@@ -1,0 +1,72 @@
+﻿<Page
+    x:Class="StatusUp.SerDetails"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:StatusUp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid x:Name="LayoutRoot">
+
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- TitlePanel -->
+        <StackPanel Grid.Row="0" Margin="24,17,0,28"/>
+        <Pivot x:Name="ptitle" Title="Page">
+            <PivotItem Header="Details">
+                <Grid Height="483" Margin="0,0,-0.333,147">
+                    <TextBlock x:Name="Server" HorizontalAlignment="Left" Margin="24,36,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="27" Width="328" FontSize="22"/>
+                    <TextBlock x:Name="Age" HorizontalAlignment="Left" Margin="24,105,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="328" FontSize="22"/>
+                    <TextBlock x:Name="lag" HorizontalAlignment="Left" Margin="24,169,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="328" FontSize="24"/>
+                    <TextBlock x:Name="loc" HorizontalAlignment="Left" Margin="24,248,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="328" FontSize="18.14"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="24,7,0,0" TextWrapping="Wrap" Text="Server:" VerticalAlignment="Top" FontSize="18"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="24,77,0,0" TextWrapping="Wrap" Text="Age:" VerticalAlignment="Top" FontSize="18"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="24,138,0,0" TextWrapping="Wrap" Text="Loading Time:" VerticalAlignment="Top" FontSize="18"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="24,220,0,0" TextWrapping="Wrap" Text="Localization:" VerticalAlignment="Top" FontSize="18"/>
+
+                </Grid>
+            </PivotItem>
+            <PivotItem Header="Twitter">
+                <Grid>
+                    <ListBox Height="632" HorizontalAlignment="Left" Name="listBox1" VerticalAlignment="Top" Width="366" Margin="-2,-2,-2,0" Background="{x:Null}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Margin="8"
+                VerticalAlignment="Top"
+                Source="{Binding ImageUri}"
+                Width="50" Height="50" />
+                                    <StackPanel>
+                                        <TextBlock Margin="8" Width="250"
+                     
+                      VerticalAlignment="Top"
+                      HorizontalAlignment="Left"
+                      Text="{Binding Title}" Foreground="White" FontSize="15" />
+                                        <TextBlock Width="250"  TextWrapping="Wrap"
+                      Margin="8,0,8,8"
+                      VerticalAlignment="Top"
+                      HorizontalAlignment="Left"
+                      Text="{Binding Body}" Foreground="White" FontSize="15"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </PivotItem>
+        </Pivot>
+
+        <!--TODO: Content should be placed within the following grid-->
+    </Grid>
+</Page>
