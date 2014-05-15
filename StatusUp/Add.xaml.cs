@@ -129,14 +129,14 @@ namespace StatusUp
                 if (responseString.Split(' ').ElementAt(0).Equals("Added"))
                 {
 
-                    MessageDialog md = new MessageDialog(responseString);
+                    MessageDialog md = new MessageDialog(responseString.ToUpper());
                     md.ShowAsync();
                     Frame.Navigate(typeof(Services));
                 }
                 else
                 {
 
-                    MessageDialog md = new MessageDialog(responseString);
+                    MessageDialog md = new MessageDialog(responseString.ToUpper());
                     md.ShowAsync();
                 }
             }

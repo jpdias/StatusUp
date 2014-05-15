@@ -21,6 +21,7 @@ using System.Net;
 using Windows.Web.Http.Headers;
 using ProfileTimelineView;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.DataTransfer;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -60,7 +61,7 @@ namespace StatusUp
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
-
+            this.RegisterForShare();
 
             
         }
@@ -153,10 +154,42 @@ namespace StatusUp
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            this.navigationHelper.OnNavigatedFrom(e);
+           
         }
-         
 
+         
         #endregion
+
+        private void RegisterForShare()
+        {
+            DataTransferManager dataTransferManager = DataTransferManager.GetForCurrentView();
+            dataTransferManager.DataRequested += new TypedEventHandler<DataTransferManager, DataRequestedEventArgs>(this.ShareTextHandler);
+        }
+
+        private void ShareTextHandler(DataTransferManager sender, DataRequestedEventArgs e)
+        {
+            DataRequest request = e.Request;
+            // The Title is mandatory
+            request.Data.Properties.Title = "StatusUpdate Info: " + s.name;
+            request.Data.Properties.Description = "StatusUpdate Application";
+
+            Age.Text = s.Age;
+            lag.Text = s.Lag;
+            loc.Text = s.Loc;
+            Server.Text = s.Server;
+            string msg = "Status: " + s.statuscode + "\n" +
+                "Server: " + s.Server + "\n" +
+                "Loading Time: " + s.Lag + "\n";
+            if (s.Loc != null)
+                msg += "Location: " + s.Loc + "\n";
+            if(s.Age !="")
+                msg += "Age: " + s.Age + "\n";
+            request.Data.SetText(msg);
+        }
+        private void share_Click(object sender, RoutedEventArgs e)
+        {
+
+            Windows.ApplicationModel.DataTransfer.DataTransferManager.ShowShareUI();
+        }
     }
 }

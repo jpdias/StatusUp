@@ -16,6 +16,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.Data.Json;
 using Windows.UI.Xaml.Navigation;
+using Windows.Storage;
+using Windows.Phone.UI.Input;
 namespace StatusUp
 {
 
@@ -29,12 +31,53 @@ namespace StatusUp
             this.InitializeComponent();
             this.NavigationCacheMode = NavigationCacheMode.Required;
 
+            HardwareButtons.BackPressed += HardwareButtons_BackPressed;
         }
 
-
-        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        async void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
         {
+            if (this.Frame.SourcePageType.FullName == "StatusUp.MainPage")
+            {
+                e.Handled = true;
+                // Create the message dialog and set its content
+                var messageDialog = new MessageDialog("Close Application?");
 
+                // Add commands and set their callbacks; both buttons use the same callback function instead of inline event handlers
+                messageDialog.Commands.Add(new UICommand(
+                    "Yes",
+                    new UICommandInvokedHandler(this.CommandInvokedHandler)));
+                messageDialog.Commands.Add(new UICommand(
+                    "No",
+                    new UICommandInvokedHandler(this.CommandInvokedHandler)));
+
+                // Set the command that will be invoked by default
+                messageDialog.DefaultCommandIndex = 0;
+
+                // Set the command to be invoked when escape is pressed
+                messageDialog.CancelCommandIndex = 1;
+
+                // Show the message dialog
+                try
+                {
+                    messageDialog.ShowAsync();
+                }
+                catch { }
+            }
+        }
+        private void CommandInvokedHandler(IUICommand command)
+        {
+            if (command.Label == "Yes")
+                Application.Current.Exit();
+
+        }
+ 
+        protected override  void OnNavigatedTo(NavigationEventArgs e){
+
+                getData();
+        }
+        public async void getData()
+        {
+  
             var httpClient = new HttpClient(new HttpClientHandler());
             HttpResponseMessage response = await httpClient.GetAsync(url + "/allsites");
             response.EnsureSuccessStatusCode();
@@ -73,7 +116,9 @@ namespace StatusUp
             if (responseString.Split(' ').ElementAt(0).Equals("authenticated"))
             {
                 user = username.Text;
-                MessageDialog md = new MessageDialog(responseString);
+                var localSettings = ApplicationData.Current.LocalSettings;
+                localSettings.Values["username"] = username.Text;
+                MessageDialog md = new MessageDialog(responseString.ToUpper());
                 md.ShowAsync();
                 Frame.Navigate(typeof(Services));
             }
@@ -84,7 +129,7 @@ namespace StatusUp
                 username.IsEnabled = true;
                 b1.IsEnabled = true;
                 b2.IsEnabled = true;
-                MessageDialog md = new MessageDialog(responseString);
+                MessageDialog md = new MessageDialog(responseString.ToUpper());
                 md.ShowAsync();
             }
         }
@@ -111,7 +156,9 @@ namespace StatusUp
             if (responseString.Split(' ')[0].Equals("Authenticated"))
             {
                 user = username.Text;
-                MessageDialog md = new MessageDialog(responseString);
+                var localSettings = ApplicationData.Current.LocalSettings;
+                localSettings.Values["username"] = username.Text;
+                MessageDialog md = new MessageDialog(responseString.ToUpper());
                 md.ShowAsync();
                 Frame.Navigate(typeof(AddService));
               
@@ -123,7 +170,7 @@ namespace StatusUp
                 username.IsEnabled = true;
                 b1.IsEnabled = true;
                 b2.IsEnabled = true;
-                MessageDialog md = new MessageDialog(responseString);
+                MessageDialog md = new MessageDialog(responseString.ToUpper());
                 md.ShowAsync();
             }
         }

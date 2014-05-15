@@ -62,8 +62,8 @@ namespace StatusUp
                 HttpResponseMessage response = await httpClient.PostAsync(MainPage.url + "/subscribe", new FormUrlEncodedContent(values));
                 response.EnsureSuccessStatusCode();
 
-                MessageDialog md = new MessageDialog((string)chk.Content);
-                md.ShowAsync();
+               /* MessageDialog md = new MessageDialog((string)chk.Content);
+                md.ShowAsync();  */
             }
             else
             {

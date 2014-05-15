@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.Data.Json;
+using System.Net.NetworkInformation;
 
 namespace StatusUp
 {
@@ -25,6 +26,7 @@ namespace StatusUp
         public string status { get; set; }
         public bool response { get; set; }
         public string ip { get; set; }
+        public int pingTime { get; set; }
     }
     class Verify
     {
@@ -77,7 +79,7 @@ namespace StatusUp
             }
    
         }
-
+       
         public static async Task<ServerData> GetAsync(string uri)
         {
             ServerData s1 = new ServerData();
@@ -86,6 +88,7 @@ namespace StatusUp
             DateTime start = DateTime.Now;
             var response = await httpClient.GetAsync(uri);
             DateTime t = DateTime.Now;
+
             int tim = (t - start).Milliseconds;
             if(tim >= 2500 || !response.IsSuccessStatusCode){
               s1.response = false;
@@ -100,7 +103,7 @@ namespace StatusUp
                 s1.response = true;
                 s1.headers = response.Headers;
                 s1.loadTime = tim;
-                s1.status = response.StatusCode.ToString()+" : " + response.ReasonPhrase.ToString();
+                s1.status = (int)response.StatusCode + " : " + response.ReasonPhrase.ToString();
                 s1.url = uri;
             }
             return await Task.Run(() => s1);

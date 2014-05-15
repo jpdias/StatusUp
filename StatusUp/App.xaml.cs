@@ -7,6 +7,7 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -33,8 +34,10 @@ namespace StatusUp
         /// </summary>
         public App()
         {
+            this.RequestedTheme = ApplicationTheme.Dark;
             this.InitializeComponent();
             this.Suspending += this.OnSuspending;
+
         }
 
         /// <summary>
@@ -91,10 +94,22 @@ namespace StatusUp
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
+            var localSettings = ApplicationData.Current.LocalSettings;
+            if (localSettings.Values.ContainsKey("username"))
+            {
+                MainPage.user = localSettings.Values["username"].ToString();
+                if (!rootFrame.Navigate(typeof(Services), e.Arguments))
+                {
+                    throw new Exception("Failed to create initial page");
+                }
+            }
+            else
+            {
                 if (!rootFrame.Navigate(typeof(MainPage), e.Arguments))
                 {
                     throw new Exception("Failed to create initial page");
                 }
+            }
             }
 
             // Ensure the current window is active

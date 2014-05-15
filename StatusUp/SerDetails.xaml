@@ -64,9 +64,22 @@
                         </ListBox.ItemTemplate>
                     </ListBox>
                 </Grid>
+                
             </PivotItem>
+     
         </Pivot>
 
         <!--TODO: Content should be placed within the following grid-->
     </Grid>
+    <Page.BottomAppBar>
+        <CommandBar ClosedDisplayMode="Minimal">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton x:Name="share" Label="Share Status" Click="share_Click" >
+                    <AppBarButton.Icon>
+                        <SymbolIcon HorizontalAlignment="Left" Symbol="ReShare" Width="40"/>
+                    </AppBarButton.Icon>
+                </AppBarButton>
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
 </Page>

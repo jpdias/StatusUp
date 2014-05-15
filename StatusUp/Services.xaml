@@ -41,9 +41,19 @@
     <Page.BottomAppBar>
         <CommandBar ClosedDisplayMode="Minimal">
             <CommandBar.PrimaryCommands>
+                <AppBarButton x:Name="refresh" Label="Refresh" Click="refresh_Click" >
+                    <AppBarButton.Icon>
+                        <SymbolIcon HorizontalAlignment="Left" Symbol="Refresh" Width="40"/>
+                    </AppBarButton.Icon>
+                </AppBarButton>
                 <AppBarButton x:Name="add" Label="Add Service" Click="add_Click" >
                     <AppBarButton.Icon>
                         <SymbolIcon HorizontalAlignment="Left" Symbol="Add" Width="40"/>
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarButton x:Name="logout" Label="Logout" Click="logout_Click" >
+                    <AppBarButton.Icon>
+                        <SymbolIcon HorizontalAlignment="Left" Symbol="ClosePane" Width="40"/>
                     </AppBarButton.Icon>
                 </AppBarButton>
             </CommandBar.PrimaryCommands>

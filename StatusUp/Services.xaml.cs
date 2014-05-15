@@ -17,7 +17,9 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
+using Windows.UI.Input;
+using Windows.Phone.UI.Input;
+using Windows.Storage;
 
 namespace StatusUp
 {
@@ -36,13 +38,18 @@ namespace StatusUp
            
 
             getAll();
-        }
-        private void button1_Click(object sender, EventArgs e)
-        {
-            //MessageBox.Show("Button 1 works!");
-            //Do work for your application here.
+            HardwareButtons.BackPressed += HardwareButtons_BackPressed;
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+        }
         public async void getAll()
         {
           
@@ -76,6 +83,7 @@ namespace StatusUp
                         obj1.Server = Verify.alldata.ElementAt(i).headers.Server.ToString() + "";
                         obj1.Age = Verify.alldata.ElementAt(i).headers.Age.ToString() + "";
                         obj1.url = (string)Verify.alldata.ElementAt(i).url;
+                        obj1.statuscode = Verify.alldata.ElementAt(i).status + "";
                     }
                     listBox1.Items.Add(obj1);
                     listBox1.SelectionChanged += listBox1_Click;
@@ -89,11 +97,44 @@ namespace StatusUp
                 }
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+
+        async void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
         {
-            
-          
+            if (this.Frame.SourcePageType.FullName == "StatusUp.Services") { 
+                e.Handled = true;
+                // Create the message dialog and set its content
+                var messageDialog = new MessageDialog("Close Application?");
+
+                // Add commands and set their callbacks; both buttons use the same callback function instead of inline event handlers
+                messageDialog.Commands.Add(new UICommand(
+                    "Yes",
+                    new UICommandInvokedHandler(this.CommandInvokedHandler)));
+                messageDialog.Commands.Add(new UICommand(
+                    "No",
+                    new UICommandInvokedHandler(this.CommandInvokedHandler)));
+
+                // Set the command that will be invoked by default
+                messageDialog.DefaultCommandIndex = 0;
+
+                // Set the command to be invoked when escape is pressed
+                messageDialog.CancelCommandIndex = 1;
+
+                // Show the message dialog
+                try
+                {
+                    messageDialog.ShowAsync();
+                }
+                catch { }
+            }
         }
+
+        private void CommandInvokedHandler(IUICommand command)
+        {
+            if(command.Label == "Yes")
+                Application.Current.Exit();
+           
+        }
+
         private bool inMyHandle = false;
         private void listBox1_Click(object sender, SelectionChangedEventArgs e)
         {
@@ -112,6 +153,19 @@ namespace StatusUp
         private void add_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(Add));
+        }
+
+        private void logout_Click(object sender, RoutedEventArgs e)
+        {
+            var localSettings = ApplicationData.Current.LocalSettings;
+            localSettings.Values.Remove("username");
+            Application.Current.Exit();
+            
+        }
+
+        private void refresh_Click(object sender, RoutedEventArgs e)
+        {
+            getAll();
         }           
          
     }
