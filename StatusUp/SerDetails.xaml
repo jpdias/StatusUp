@@ -26,18 +26,20 @@
         <Pivot x:Name="ptitle" Title="Page">
             <PivotItem Header="Details">
                 <Grid Height="483" Margin="0,0,-0.333,147">
-                    <TextBlock x:Name="Server" HorizontalAlignment="Left" Margin="24,36,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="27" Width="328" FontSize="22"/>
+                    <TextBlock x:Name="Server" HorizontalAlignment="Left" Margin="24,300,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="27" Width="328" FontSize="22"/>
                     <TextBlock x:Name="Age" HorizontalAlignment="Left" Margin="24,105,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="328" FontSize="22"/>
-                    <TextBlock x:Name="lag" HorizontalAlignment="Left" Margin="24,169,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="328" FontSize="24"/>
-                    <TextBlock x:Name="loc" HorizontalAlignment="Left" Margin="24,248,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="328" FontSize="18.14"/>
-                    <TextBlock HorizontalAlignment="Left" Margin="24,7,0,0" TextWrapping="Wrap" Text="Server:" VerticalAlignment="Top" FontSize="18"/>
+                    <TextBlock x:Name="lag" HorizontalAlignment="Left" Margin="24,169,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="328" FontSize="22"/>
+                    <TextBlock x:Name="loc" HorizontalAlignment="Left" Margin="24,232,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="328" FontSize="22"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="24,271,0,0" TextWrapping="Wrap" Text="Server:" VerticalAlignment="Top" FontSize="18"/>
                     <TextBlock HorizontalAlignment="Left" Margin="24,77,0,0" TextWrapping="Wrap" Text="Age:" VerticalAlignment="Top" FontSize="18"/>
                     <TextBlock HorizontalAlignment="Left" Margin="24,138,0,0" TextWrapping="Wrap" Text="Loading Time:" VerticalAlignment="Top" FontSize="18"/>
-                    <TextBlock HorizontalAlignment="Left" Margin="24,220,0,0" TextWrapping="Wrap" Text="Localization:" VerticalAlignment="Top" FontSize="18"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="24,204,0,0" TextWrapping="Wrap" Text="Localization:" VerticalAlignment="Top" FontSize="18"/>
+                    <TextBlock x:Name="stat" HorizontalAlignment="Left" Margin="24,38,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="328" FontSize="22"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="24,10,0,0" TextWrapping="Wrap" Text="Status Code:" VerticalAlignment="Top" FontSize="18"/>
 
                 </Grid>
             </PivotItem>
-            <PivotItem Header="Twitter">
+            <PivotItem x:Name="twitter" Header="Twitter">
                 <Grid>
                     <ListBox Height="632" HorizontalAlignment="Left" Name="listBox1" VerticalAlignment="Top" Width="366" Margin="-2,-2,-2,0" Background="{x:Null}">
                         <ListBox.ItemTemplate>
@@ -63,10 +65,11 @@
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
+                    <ProgressRing x:Name="ring1" Margin="133,197,137,341"/>
                 </Grid>
-                
+
             </PivotItem>
-     
+
         </Pivot>
 
         <!--TODO: Content should be placed within the following grid-->

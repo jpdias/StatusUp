@@ -7,7 +7,9 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Networking.Connectivity;
 using Windows.Storage;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -37,9 +39,19 @@ namespace StatusUp
             this.RequestedTheme = ApplicationTheme.Dark;
             this.InitializeComponent();
             this.Suspending += this.OnSuspending;
-
         }
-
+        
+        public static bool IsInternetAvailable
+        {
+            get
+            {
+                var profiles = NetworkInformation.GetConnectionProfiles();
+                var internetProfile = NetworkInformation.GetInternetConnectionProfile();
+                return profiles.Any(s => s.GetNetworkConnectivityLevel() == NetworkConnectivityLevel.InternetAccess)
+                    || (internetProfile != null
+                            && internetProfile.GetNetworkConnectivityLevel() == NetworkConnectivityLevel.InternetAccess);
+            }
+        }
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points
         /// will be used when the application is launched to open a specific file, to display

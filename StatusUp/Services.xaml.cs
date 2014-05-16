@@ -35,12 +35,55 @@ namespace StatusUp
         public Services()
         {
             this.InitializeComponent();
-           
-
-            getAll();
+            CheckInternet();
             HardwareButtons.BackPressed += HardwareButtons_BackPressed;
         }
+        public async void CheckInternet()
+        {
+            while (!App.IsInternetAvailable)
+            {
 
+
+                var messageDialog = new MessageDialog(("No data connection has been found."));
+
+                // Add commands and set their callbacks; both buttons use the same callback function instead of inline event handlers
+                messageDialog.Commands.Add(new UICommand(
+                    "Try again",
+                    new UICommandInvokedHandler(this.CommandInvokedHandlerInternet)));
+                messageDialog.Commands.Add(new UICommand(
+                    "Close",
+                    new UICommandInvokedHandler(this.CommandInvokedHandlerInternet)));
+
+                // Set the command that will be invoked by default
+                messageDialog.DefaultCommandIndex = 0;
+
+                // Set the command to be invoked when escape is pressed
+                messageDialog.CancelCommandIndex = 1;
+
+                // Show the message dialog
+                try
+                {
+                   await messageDialog.ShowAsync();
+                }
+                catch { }
+            }
+             getAll();
+             MainPage.getData();
+        }
+        public void CommandInvokedHandlerInternet(IUICommand command)
+        {         
+            if (command.Label == "Try again")
+            {
+             
+            }
+            else
+            {
+              Application.Current.Exit();
+            }
+
+        }
+
+       
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);

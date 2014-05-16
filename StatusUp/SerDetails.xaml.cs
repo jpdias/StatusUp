@@ -75,11 +75,20 @@ namespace StatusUp
             lag.Text = s.Lag;
             loc.Text = s.Loc;
             Server.Text = s.Server;
-
+            stat.Text = s.statuscode;
+           
             var temp = Services.allServices.Find(item => item.Item1.Equals(s.url));
             if (temp != null) { 
+
                 DataDownloader t1 = ProfileTimelineView.Twitter.TwitterDownloader.Create(temp.Item2);
+                ring1.IsEnabled = true;
+                ring1.IsActive = true;
+                //listBox1.Items.Clear();
                 List<TimelineData> ltw = (await Task.WhenAll(t1.GetTimelineAsync()))[0];
+                ring1.IsEnabled = false;
+                ring1.IsActive = false;
+
+
 
                 for (int i = 0; i < ltw.Count; i++)
                 {
@@ -88,7 +97,7 @@ namespace StatusUp
             }
             else
             {
-
+                ptitle.Items.RemoveAt(1);
             }
         }
         /// <summary>
@@ -176,6 +185,7 @@ namespace StatusUp
             Age.Text = s.Age;
             lag.Text = s.Lag;
             loc.Text = s.Loc;
+            stat.Text = s.statuscode;
             Server.Text = s.Server;
             string msg = "Status: " + s.statuscode + "\n" +
                 "Server: " + s.Server + "\n" +
