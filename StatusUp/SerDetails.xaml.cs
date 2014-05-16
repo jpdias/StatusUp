@@ -78,6 +78,20 @@ namespace StatusUp
             stat.Text = s.statuscode;
            
             var temp = Services.allServices.Find(item => item.Item1.Equals(s.url));
+            if (temp == null)
+            {
+                  temp = Services.allServices.Find(item => item.Item1.Equals(s.url+"/"));
+            }
+            if (temp == null)
+            {
+                string str = s.url.Insert(7, "www.");
+                temp = Services.allServices.Find(item => item.Item1.Equals(str));
+            }
+            if (temp == null)
+            {
+                string str1 = s.url.Insert(7, "www.");
+                temp = Services.allServices.Find(item => item.Item1.Equals(str1+"/"));
+            }
             if (temp != null) { 
 
                 DataDownloader t1 = ProfileTimelineView.Twitter.TwitterDownloader.Create(temp.Item2);
