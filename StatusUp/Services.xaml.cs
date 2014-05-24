@@ -130,6 +130,7 @@ namespace StatusUp
                     }
                     listBox1.Items.Add(obj1);
                     listBox1.SelectionChanged += listBox1_Click;
+                    //listBox1.Holding += listBox1_Holding;
                     //listBox1.
 
                     /*TextBox t1 = new TextBox();
@@ -139,6 +140,19 @@ namespace StatusUp
                     // servlist.Items.Add(l1);    
                 }
         }
+        SerDetailPage temp = new SerDetailPage();
+       /* void listBox1_Holding(object sender, HoldingRoutedEventArgs e)
+        {
+            ListBox element = (ListBox)sender;
+            SerDetailPage s1 = (SerDetailPage)e.OriginalSource;
+            temp = s1;
+            MenuFlyoutItem x = new MenuFlyoutItem();
+            x.Text= "delete";
+            x.Click += x_Click;
+            MenuFlyout l1 = new MenuFlyout();
+            l1.Items.Add(x);
+            l1.ShowAt((FrameworkElement)e.OriginalSource);
+        }   */
 
 
         async void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
@@ -192,6 +206,7 @@ namespace StatusUp
                 Frame.Navigate(typeof(SerDetails), s1);
             }
         }
+
 
         private void add_Click(object sender, RoutedEventArgs e)
         {

@@ -225,6 +225,33 @@ app.post('/subscribe', function (req, res) {
     });
 });
 
+app.post('/remove', function (req, res) {
+	var user = req.body.username;
+	var ser = req.body.service;
+	User.findOne({
+        username: user
+    },
+    function (err, user) {
+	console.log(arguments)
+        if (user) {
+            if (err) return fn(new Error('cannot find user'));
+			req.session.destroy(function () {
+				User.findOneAndUpdate(
+					{username: user.username},
+					{$pop: {services: ser}},
+					{safe: true, upsert: true},
+					function(err, model) {
+						console.log(err);
+					}
+				);
+				res.send("removed");
+			});
+        } else {
+            return fn(new Error('cannot find user'));
+        }
+    });
+});
+
 app.post('/logout', function (req, res) {
     req.session.destroy(function () {
         res.send('terminated');

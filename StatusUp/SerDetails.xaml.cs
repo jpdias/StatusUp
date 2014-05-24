@@ -22,6 +22,7 @@ using Windows.Web.Http.Headers;
 using ProfileTimelineView;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.DataTransfer;
+using Windows.UI.Popups;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -75,7 +76,8 @@ namespace StatusUp
             lag.Text = s.Lag;
             loc.Text = s.Loc;
             Server.Text = s.Server;
-            stat.Text = s.statuscode;
+            if(s.statuscode!=null)
+             stat.Text = s.statuscode;
            
             var temp = Services.allServices.Find(item => item.Item1.Equals(s.url));
             if (temp == null)
@@ -214,6 +216,23 @@ namespace StatusUp
         {
 
             Windows.ApplicationModel.DataTransfer.DataTransferManager.ShowShareUI();
+        }
+
+        private async void rm_Click(object sender, RoutedEventArgs e)
+        {
+            var values = new List<KeyValuePair<string, string>>{
+                new KeyValuePair<string, string>("username",MainPage.user),
+                new KeyValuePair<string, string>("service",s.url)
+            };
+
+            var httpClient = new HttpClient(new HttpClientHandler());
+            HttpResponseMessage response = await httpClient.PostAsync(MainPage.url + "/remove", new FormUrlEncodedContent(values));
+            response.EnsureSuccessStatusCode();
+            var responseString = await response.Content.ReadAsStringAsync();
+
+            var messageDialog = new MessageDialog(responseString.ToUpper());
+            messageDialog.ShowAsync();
+            Frame.Navigate(typeof(Services));
         }
     }
 }

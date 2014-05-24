@@ -33,7 +33,7 @@
                     <TextBlock HorizontalAlignment="Left" Margin="24,271,0,0" TextWrapping="Wrap" Text="Server:" VerticalAlignment="Top" FontSize="18"/>
                     <TextBlock HorizontalAlignment="Left" Margin="24,77,0,0" TextWrapping="Wrap" Text="Age:" VerticalAlignment="Top" FontSize="18"/>
                     <TextBlock HorizontalAlignment="Left" Margin="24,138,0,0" TextWrapping="Wrap" Text="Loading Time:" VerticalAlignment="Top" FontSize="18"/>
-                    <TextBlock HorizontalAlignment="Left" Margin="24,204,0,0" TextWrapping="Wrap" Text="Localization:" VerticalAlignment="Top" FontSize="18"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="24,204,0,0" TextWrapping="Wrap" Text="Location:" VerticalAlignment="Top" FontSize="18"/>
                     <TextBlock x:Name="stat" HorizontalAlignment="Left" Margin="24,38,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="328" FontSize="22"/>
                     <TextBlock HorizontalAlignment="Left" Margin="24,10,0,0" TextWrapping="Wrap" Text="Status Code:" VerticalAlignment="Top" FontSize="18"/>
 
@@ -80,6 +80,11 @@
                 <AppBarButton x:Name="share" Label="Share Status" Click="share_Click" >
                     <AppBarButton.Icon>
                         <SymbolIcon HorizontalAlignment="Left" Symbol="ReShare" Width="40"/>
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarButton x:Name="rm" Label="Delete " Click="rm_Click" >
+                    <AppBarButton.Icon>
+                        <SymbolIcon HorizontalAlignment="Left" Symbol="Delete" Width="40"/>
                     </AppBarButton.Icon>
                 </AppBarButton>
             </CommandBar.PrimaryCommands>
