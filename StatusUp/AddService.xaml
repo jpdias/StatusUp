@@ -20,6 +20,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <Grid HorizontalAlignment="Left" Height="180" Margin="0,-26,0,0" VerticalAlignment="Top" Width="400" Background="#FF2BA6FF"/>
 
         <!-- TitlePanel -->
         <StackPanel Grid.Row="0" Margin="24,17,0,28">
@@ -29,8 +30,8 @@
 
         <!--TODO: Content should be placed within the following grid-->
         <Grid x:Name="ContentRoot" Margin="0,154,0,0" Grid.RowSpan="2">
-            <ListView x:Name="ListServices" HorizontalAlignment="Left" Height="398" Margin="10,10,0,0" VerticalAlignment="Top" Width="380"/>
-            <Button x:Name="next" Content="Next" HorizontalAlignment="Left" Margin="10,419,0,0" VerticalAlignment="Top" Width="380" Height="66" Click="next_Click"/>
+            <ListView x:Name="ListServices" HorizontalAlignment="Left" Height="373" Margin="10,10,0,0" VerticalAlignment="Top" Width="380"/>
+            <Button x:Name="next" Content="Next" HorizontalAlignment="Stretch" Margin="35,399,35,0" VerticalAlignment="Top" Height="66" Click="next_Click"/>
         </Grid>
     </Grid>
 </Page>

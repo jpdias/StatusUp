@@ -7,9 +7,10 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+    
     <Grid x:Name="LayoutRoot">
-
+     
+        
         <Grid.ChildrenTransitions>
             <TransitionCollection>
                 <EntranceThemeTransition/>
@@ -20,6 +21,9 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+
+        <!-- TitlePanel -->
+        <Grid HorizontalAlignment="Left" Height="180" Margin="0,-26,0,0" VerticalAlignment="Top" Width="400" Background="#FF2BA6FF"/>
 
         <!-- TitlePanel -->
         <StackPanel Grid.Row="0" Margin="24,17,0,28">

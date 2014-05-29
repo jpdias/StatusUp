@@ -23,6 +23,8 @@ using ProfileTimelineView;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.UI.Popups;
+using Windows.UI;
+using System.Globalization;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -64,6 +66,9 @@ namespace StatusUp
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
             this.RegisterForShare();
 
+            StatusBar statusBar = StatusBar.GetForCurrentView();
+            statusBar.BackgroundOpacity = this.Opacity;
+            statusBar.BackgroundColor = Color.FromArgb(255, 43, 166, 255);
             
         }
         public  static  SerDetailPage s = new SerDetailPage();

@@ -1,0 +1,8 @@
+\select@language {portuguese}
+\contentsline {section}{\numberline {1}Introdu\IeC {\c c}\IeC {\~a}o}{3}
+\contentsline {section}{\numberline {2}Arquitetura e implementa\IeC {\c c}\IeC {\~a}o}{4}
+\contentsline {subsection}{\numberline {2.1}Tecnologias utilizadas}{4}
+\contentsline {subsection}{\numberline {2.2}Arquitetura}{4}
+\contentsline {section}{\numberline {3}Utiliza\IeC {\c c}\IeC {\~a}o}{5}
+\contentsline {section}{\numberline {4}Divis\IeC {\~a}o de trabalho e atribui\IeC {\c c}\IeC {\~a}o de tarefas}{6}
+\contentsline {section}{\numberline {5}Conclus\IeC {\~a}o}{7}

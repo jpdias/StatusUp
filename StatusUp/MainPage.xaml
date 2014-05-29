@@ -9,12 +9,13 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <Rectangle Fill="#FF2BA6FF" Margin="0,-42,0,470" />
         <StackPanel Grid.Row="0" Margin="24,17,0,28">
             <TextBlock x:Uid="Header" Text="STATUSUPDATE" Style="{ThemeResource TitleTextBlockStyle}" Typography.Capitals="SmallCaps"/>
             <TextBlock Text="Login" Margin="0,12,0,0" Style="{ThemeResource HeaderTextBlockStyle}"/>
         </StackPanel>
 
-        <Grid x:Name="ContentRoot" Margin="0,134,0,-134">
+        <Grid x:Name="ContentRoot" Margin="0,170,0,-134">
             <Button x:Name="b1" Content="Login" HorizontalAlignment="Left" Margin="27,209,0,0" VerticalAlignment="Top" Click="Login_Click" Height="76" Width="159"/>
             <TextBox x:Name="username"  HorizontalAlignment="Left" Margin="141,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="226"/>
             <TextBlock HorizontalAlignment="Left" Margin="10,38,0,0" TextWrapping="Wrap" Text="Username" VerticalAlignment="Top" Height="38" Width="126" TextAlignment="Center" LineHeight="24" FontSize="24"/>
