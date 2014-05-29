@@ -234,7 +234,7 @@ app.post('/remove', function (req, res) {
     function (err, user) {
 	console.log(arguments)
         if (user) {
-            if (err) return fn(new Error('cannot find user'));
+            if (err) return fn(new Error('Cannot find user'));
 			req.session.destroy(function () {
 				User.findOneAndUpdate(
 					{username: user.username},
@@ -247,7 +247,7 @@ app.post('/remove', function (req, res) {
 				res.send("removed");
 			});
         } else {
-            return fn(new Error('cannot find user'));
+            return fn(new Error('Cannot find user'));
         }
     });
 });
