@@ -61,14 +61,14 @@ function authenticate(name, pass, fn) {
 
     function (err, user) {
         if (user) {
-            if (err) return fn(new Error('cannot find user'));
+            if (err) return fn(new Error('Cannot find user'));
             hash(pass, user.salt, function (err, hash) {
                 if (err) return fn(err);
                 if (hash == user.hash) return fn(null, user);
                 fn(new Error('invalid password'));
             });
         } else {
-            return fn(new Error('cannot find user'));
+            return fn(new Error('Cannot find user'));
         }
     });
 
@@ -90,8 +90,8 @@ function userExist(req, res, next) {
         if (count === 0) {
             next();
         } else {
-            req.session.error = "User Exist"
-			res.send('user exists');
+            req.session.error = "User Exists"
+			res.send('User exists');
         }
     });
 }
@@ -134,10 +134,10 @@ app.post("/login", function (req, res) {
         if (user) {
             req.session.regenerate(function () {
                 req.session.user = user;
-				res.send('authenticated as ' + user.username);
+				res.send('Authenticated as ' + user.username);
             });
         } else {
-			res.send('login failed');
+			res.send('Login failed');
         }
     });
 });
@@ -150,12 +150,12 @@ app.post('/apps', function (req, res) {
     },
     function (err, user) {
         if (user) {
-            if (err) return fn(new Error('cannot find user'));
+            if (err) return fn(new Error('Cannot find user'));
 			req.session.destroy(function () {
 				res.send(user.services);
 			});
         } else {
-            return fn(new Error('cannot find user'));
+            return fn(new Error('Cannot find user'));
         }
     });
 });
@@ -167,12 +167,12 @@ app.post('/default', function (req, res) {
     },
     function (err, wsite) {
         if (wsite) {
-            if (err) return fn(new Error('cannot find wsite'));
+            if (err) return fn(new Error('Cannot find wsite'));
 			req.session.destroy(function () {
 				res.send(wsite.twitter);
 			});
         } else {
-            return fn(new Error('cannot find wsite'));
+            return fn(new Error('Cannot find wsite'));
         }
     });
 });
@@ -186,9 +186,9 @@ app.post('/addsite',function (req, res) {
 	
 	ad.save(function (err, ad) {
 	  if (err) return console.error(err);
-	  res.send("Added");
+	  res.send("Added site");
 	});
-	res.send("Added");
+	res.send("Added site");
 }); 
 
 app.get('/allsites',function (req, res) {
@@ -207,7 +207,7 @@ app.post('/subscribe', function (req, res) {
     function (err, user) {
 	console.log(arguments)
         if (user) {
-            if (err) return fn(new Error('cannot find user'));
+            if (err) return fn(new Error('Cannot find user'));
 			req.session.destroy(function () {
 				User.findOneAndUpdate(
 					{username: user.username},
@@ -220,7 +220,7 @@ app.post('/subscribe', function (req, res) {
 				res.send("Added");
 			});
         } else {
-            return fn(new Error('cannot find user'));
+            return fn(new Error('Cannot find user'));
         }
     });
 });
