@@ -69,7 +69,7 @@ Aproxima-se que foi utilizado um total de 60 horas de trabalho total, sendo que 
 
 \section{Arquitetura e implementação}
 \subsection{Tecnologias utilizadas}
-	O presente projeto foi desenvolvido com base no paradigma REST, ou seja usando os métodos disponíveis no protocolo HTTP 1.1, que se é atualmente muito falado, e usando tecnologias de alta performance e recentes, ou seja, para o servidor foi utilizado Node.js e com concordância com este sistema foi utilizada uma base de dados NoSQL, MongoDB. No lado da aplicação móvel esta foi desenvolvida usando a linguagem C\# sobre a plataforma móvel Windows Phone 8.1 (versão atualmente ainda em fase de desenvolvimento e disponível apenas para \textit{developers}).
+	O presente projeto foi desenvolvido com base no paradigma REST, ou seja usando os métodos disponíveis no protocolo HTTP 1.1. Este paradigma é atualmente muito falado, e usando tecnologias de alta performance e recentes é uma mais valia tirar partido dele Assim sendo, para o servidor foi utilizado Node.js e com concordância com este sistema foi utilizada uma base de dados NoSQL, MongoDB. No lado da aplicação móvel esta foi desenvolvida usando a linguagem C\# sobre a plataforma móvel Windows Phone 8.1 (versão atualmente ainda em fase de desenvolvimento e disponível apenas para \textit{developers}).
 	
 	A escolha de se utilizar Node.js no servidor trata-se de além da fácilidade de programação graças a ser utilizada a linguagem JavaScript, a grande quantidade de módulos adicionais existentes como é o caso do \textit{expressjs} e do \textit{moongose}.	 No nosso caso o Node.js facilitou em muito a comunicação REST tanto devido a utilizaçao do módulo \textit{expressjs} e devido a todo o \textit{server-side} ser altamente escalável, e toda a comunicação ser feita assincronamente. Por outro lado a base de dados MongoDB é também altamente escalável e orientada a documentos, sendo mais fácil armazenar informação e mais flexivel. 
 	
@@ -108,6 +108,7 @@ Resource (URI) & GET  & PUT & POST  & DELETE  \\\hline
 /remove & - &  -& Remove um serviço de um utilizador & - \\\hline
 /logout &  -& - & Termina sessão de um utilizador &-  \\\hline
 \end{tabular}
+\caption{API REST implementada em Node.js}
 \end{table}
 
 A nível do servidor as maiores dificuldades foram a aprendizagem a plataforma Node.js e de como seria definida a API, assim como a adicional necessidade de ser estabelecida a ligação a uma base de dados em outro seviço de forma a ser usado MongoDB. Assim numa primeira parte defenindo a RESTful API chegou-se a estrutura apresentada na tabela.
