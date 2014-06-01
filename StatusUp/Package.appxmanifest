@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
-  <Identity Name="03a1c4a3-2e50-4eeb-a38f-e35035c90670" Publisher="CN=jpdias" Version="1.0.0.0" />
-  <mp:PhoneIdentity PhoneProductId="03a1c4a3-2e50-4eeb-a38f-e35035c90670" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="46940JPDias.StatusUpdate" Publisher="CN=FF3C3682-7932-456E-9CB4-9CCCF13CEE1F" Version="1.1.0.2" />
+  <mp:PhoneIdentity PhoneProductId="72c59d7b-e3ad-43ca-98a4-e9855b023ddf" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>StatusUp</DisplayName>
-    <PublisherDisplayName>jpdias</PublisherDisplayName>
+    <DisplayName>StatusUpdate</DisplayName>
+    <PublisherDisplayName>JP Dias</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Prerequisites>
@@ -16,7 +16,7 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="StatusUp.App">
-      <m3:VisualElements DisplayName="StatusUpdate" Square150x150Logo="Assets\Logo.png" Square44x44Logo="Assets\SmallLogo.png" Description="StatusUpdate" ForegroundText="light" BackgroundColor="transparent">
+      <m3:VisualElements DisplayName="StatusUpdate" Square150x150Logo="Assets\medium.png" Square44x44Logo="Assets\SmallLogo.png" Description="StatusUpdate" ForegroundText="light" BackgroundColor="transparent">
         <m3:DefaultTile Wide310x150Logo="Assets\WideLogo.png" Square71x71Logo="Assets\Square71x71Logo.png" DefaultSize="square150x150Logo">
         </m3:DefaultTile>
         <m3:SplashScreen Image="Assets\SplashScreen.png" />

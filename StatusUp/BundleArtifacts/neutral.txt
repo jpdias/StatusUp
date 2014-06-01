@@ -1,0 +1,3 @@
+MainPackage=C:\Projects\StatusUp\StatusUp\bin\Release\StatusUp_1.1.0.2_Bundle\StatusUp_1.1.0.2_AnyCPU.appx
+SymbolPackage=C:\Projects\StatusUp\StatusUp\AppPackages\StatusUp_1.1.0.2_Test\StatusUp_1.1.0.2_AnyCPU.appxsym
+ResourcePack=C:\Projects\StatusUp\StatusUp\bin\Release\StatusUp_1.1.0.2_Bundle\StatusUp_1.1.0.2_scale-100.appx
